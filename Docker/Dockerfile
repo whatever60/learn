@@ -2,8 +2,13 @@ FROM jupyter/datascience-notebook
 
 USER jovyan
 
-RUN pip install jupyterlab-git requests scanpy flask dash streamlit && \
-	jupyter labextension install @jupyterlab/git @telamonian/theme-darcula
+RUN pip install jupyterlab-git
+RUN pip install requests
+RUN pip install scanpy
+RUN pip install flask
+RUN pip install dash
+RUN pip install streamlit
+RUN jupyter labextension install @jupyterlab/git @telamonian/theme-darcula
 	
 COPY @jupyterlab .jupyter/lab/user-settings/@jupyterlab
 
@@ -12,14 +17,15 @@ USER root
 #RUN	usermod -l wusuowei jovyan && \
 # 	usermod -d /home/wusuowei -m wusuowei && \
 # 	usermod -u 60 wusuowei
-	
-RUN chsh -s /bin/zsh
-
-SHELL ["zsh", "-c"]
 
 RUN apt-get update && \
 	apt-get upgrade -y --no-install-recommends && \
 	apt-get install -y --no-install-recommends zsh
+
+
+RUN chsh -s /bin/zsh
+
+SHELL ["zsh", "-c"]
 
 WORKDIR /home/jovyan
 
