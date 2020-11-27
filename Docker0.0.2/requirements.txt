@@ -1,0 +1,6 @@
+jupyterlab-git
+requests
+scanpy
+flask
+dash
+streamlit
